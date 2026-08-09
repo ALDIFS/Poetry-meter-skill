@@ -8,8 +8,6 @@ A Claude Skill for writing Chinese poetry with soul, not just technique — 让 
 
 ---
 
-### English
-
 **What this is**
 
 A Claude Skill that produces Chinese classical poetry at the level of a university literature department. Not "AI-generated verse." Not "close enough." Poems that follow the Ping-shui rhyme system (平水韵) with formal rigor, and carry emotional weight beyond formal correctness.
@@ -35,8 +33,6 @@ Formal templates for 五绝·七绝·五律·七律. Six classic 词牌 patterns
 This skill is also a window. It explains not just how Chinese poetry works, but *why* it works—at the level of compression, silence, and the weight of a single character. If you have ever wondered how a twenty-character poem from the Tang dynasty can still break your heart twelve centuries later, this is a map of that territory.
 
 ---
-
-### 中文
 
 **这是什么**
 
