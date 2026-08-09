@@ -1,59 +1,54 @@
-# Writing-poetry-Skill
-A Claude Skill for writing Chinese poetry with soul, not just technique — 让 AI 写中国诗歌不再俗气。
+## poetry-meter-skill · 让 AI 写出中文系水准的唐诗宋词的方法
 
-## poetry-meter
-
-> Trained on three hundred Tang poems. Critiqued by a real poet. Polished until it bled.
-> 喂过唐诗三百首，挨过真人批改，打磨到见血为止。
-
+> A Claude Skill that trains AI to write Tang and Song poetry at the level of a Chinese literature graduate — archaic in tone, precise in craft, alive with feeling. Not "AI-generated verse." The real thing.A Claude Skill that writes Chinese classical poetry without embarrassing you. Six steps. Fifty-four self-improving weights. Nine principles from a real poet. One rule: sincerity over ornament, always.
+>
+> 一个让 AI 写出中文系水准唐诗宋词的 Claude Skill——格调高古、技法精严、感发生命在线。
+>  一个让 AI 写诗不再俗气的 Claude Skill。六步方法论。五十四项自进化权重。九条真人诗学法则。一条铁律：情真胜过辞藻，永远
 ---
+
 
 **What this is**
 
-A Claude Skill that produces Chinese classical poetry at the level of a university literature department. Not "AI-generated verse." Not "close enough." Poems that follow the Ping-shui rhyme system (平水韵) with formal rigor, and carry emotional weight beyond formal correctness.
+This skill teaches an AI to write classical Chinese poetry that doesn't read like an AI wrote it. The goal is not "passable." The goal is: a reader with a literature degree cannot tell the difference between this and a human poet.
 
-**How it was built**
+It achieves this through a method, not just a rulebook. A six-step workflow takes the AI from raw feeling to finished poem. Fifty-four weighted criteria — from "does the emotion sit in a specific organ" to "is the ending an image or a conclusion" — guide attention during composition and incrementally learn from every round of critique. The weights are the memory of practice: what mattered in the last poem matters more in the next.
 
-Step one was straightforward: ingest the canon. Three hundred Tang poems, the major Song dynasty *ci* masters, a thousand years of the finest lines ever written in Chinese. Any language model can read a corpus.
+The aesthetic backbone comes from Professor Ye Jiaying's lifelong framework: what makes a line alive (感发生命), why "lotus in elegant diction" (菡萏) hits differently than "lotus in plain speech" (荷花), how the four-layer analysis (expression form / expression substance / content form / content substance) reveals why a thousand-year-old poem still works. Fifteen masters — from Wen Tingyun's coded elegance to Xin Qiji's life-poured-onto-paper — serve as stylistic anchors, not templates to copy but spirits to inhabit.
 
-Step two is where it actually happened. A real poet—someone who writes not as performance but as survival—took the AI's output apart, line by line. Not with lectures. With single words: *"Cliché." "The moon is already in that line." "One character, one word—this isn't modern prose."*
+The technique is total: Ping-shui rhyme system, tonal matrices for every classical form, entering-tone characters, allusion methods, parallelism types. But technique never runs the show. The nine principles — body presence, image-not-conclusion endings, dare to be ugly, fold time — are what make the output feel like someone actually hurt or loved before writing it down.
 
-And then the hard part: write again. Get torn apart again. Write again. Round after round, each time the critique sharper and the revision closer to something true. The poet fed the AI her own work—classical forms and modern free verse side by side—and let the machine learn not from explanation but from immersion. From pattern. From the space between what was said and what was burned into the white of the page.
+The result: poetry that is archaic in register, strict in prosody, and — this is the part that matters — not hollow. Something you could submit to a Tang dynasty poetry contest and not be laughed out of the room.
 
-Nine principles emerged from this process. They are not the principles of a textbook. They are the principles of someone who has hurt and loved and written it down: *Emotion lives in the body. End with an image, never a conclusion. Dare to be ugly. Fold time. Say the heaviest thing lightly. Sincerity over ornament, always.*
+**What makes this different from every other poetry skill**
 
-The result is a skill that doesn't just follow the rules of classical Chinese prosody. It understands, at the level of craft, *why* a single verb change turns a sentence into a poem, and *why* the best ending is a door left open rather than a verdict delivered.
+Most poetry tools give you rules. This one gives you a method.
 
-**What's inside**
+It doesn't just tell you to match tones and rhymes. It walks you through a six-step workflow — from finding the emotional core, through selecting a form and drafting, to word-refinement, aesthetic self-critique, and final polish. Each step contains granular items marked with a weight. Before writing, you scan the weights to know where to focus. After writing, you increment the weights of whatever you did well. The system learns with you.
 
-Formal templates for 五绝·七绝·五律·七律. Six classic 词牌 patterns with worked examples. Ping-shui rhyme tables cross-referenced with emotional tone. The Nine Principles. A diagnostic checklist for the eight diseases that make poetry sound cheap. And the scars of every mistake made and corrected along the way.
-
-**For the non-Chinese reader**
-
-This skill is also a window. It explains not just how Chinese poetry works, but *why* it works—at the level of compression, silence, and the weight of a single character. If you have ever wondered how a twenty-character poem from the Tang dynasty can still break your heart twelve centuries later, this is a map of that territory.
+The approach is grounded in two sources. One is the late Professor Ye Jiaying's (Florence Chia-ying Yeh) lifelong aesthetic framework — her concepts of "affective life" (感发生命), the "four-layer analysis" of poetic language, the distinction between poetry's broad realm and ci's lingering resonance (诗之境阔，词之言长), and her reading of fifteen masters from Wen Tingyun to Wang Yisun. The other is nine principles extracted from a real poet's practice and brutal critique — principles like "emotion lives in the body," "end with an image, never a conclusion," "dare to be ugly," and "say the heaviest thing lightly."
 
 ---
 
-**这是什么**
+**这个 skill 是干什么的**
 
-一个能写出中文系水准古典诗词的 Claude Skill。不是「AI 生成的韵文」，不是「差不多就行」。而是严格遵循平水韵、格律无误、且格律之外有情感重量的诗。
+让 AI 写出不像 AI 写的古典诗词。目标不是"还行"。目标是：一个中文系出身的人读完之后，分不出这是人写的还是 AI 写的。
 
-**它是怎么炼成的**
+做到这一点，靠的不是一本规则书，是一套方法。六步工作流带 AI 从真情实感到成稿：主题确认真不真→格律选对没有→初稿放直觉冲→一字一词炼材质→过审美批评关→最终成稿。每步下面有五十四项带权重的操作指标——从"情绪落在哪个具体器官上"到"结尾是画面还是总结"——写作前扫权重定方向，写完后复盘好的加权重。权重是实战的记忆：上次打磨过的，下次自动重点打磨。
 
-第一步很简单：喂料。唐诗三百首，宋代名家词，一千年里最好的句子。任何语言模型都能读语料。
+审美根基来自叶嘉莹先生的体系：什么叫"感发生命"（不是写花写月就是诗，是写的东西里有没有一份摇荡性情的感动），为什么"菡萏"和"荷花"不是一个东西（四层分析法：表达形式/表达材质/内容形式/内容材质），"诗之境阔，词之言长"到底在说什么。十五位词人——从温庭筠的语码之美到辛弃疾的以生命写诗——是风格的锚，不是拿来抄的模板，是拿来进入的精神状态。
 
-第二步才是关键。一位真正的诗人——写诗不是为了表演、是为了活着的那种——开始逐行批改 AI 的产出。不讲课，一个字一个字的点：「俗。」「前面月亮已经在了。」「古汉语一个字就是一个词——这不是现代汉语。」
+技法全覆盖：平水韵一百零六部、近体诗和词牌的完整平仄模板、入声字必记表、化用三法、对仗全部类型。但技法永远服务于心法。九条法则——身体在场、结尾是画面不是道理、敢于丑陋、时间的折叠——才是让诗读起来像"人写的"而不是"AI填的"的那个东西。
 
-然后是最狠的部分：再写。再被撕开。再写。一轮接一轮，每次批改更锋利，每次重写更接近真实。诗人把自己的作品也喂了进去——古典词和现代诗并排放在一起——让 AI 不是在讲解中学习，而是在浸泡中自己摸出规律。在说出的字和留在纸上的空白之间。
+产出：格调高古，格律精严，关键是——不空。可以投稿唐代诗歌比赛而不被赶出去的那种。
 
-九条法则在这个过程中浮现。不是教科书的法则，是一个真正痛过爱过的人写出来的法则：身体在场。结尾是画面不是道理。敢于丑陋。时间的折叠。重话轻轻说。情真胜过辞藻，永远。
+**跟其他诗词 skill 最大的区别**
 
-最终产出的不是一个只会遵从格律的写诗工具。它理解——在技术的层面——为什么一个动词的选择能让一句话变成诗，为什么最好的结尾是一扇开着的门而不是一道宣判。
+大多数诗词工具给你规则。这个给你方法。
 
-**内容**
+不是只告诉你怎么对平仄、怎么押韵。它有一套完整的六步工作流——从确认感发生命开始，到选体格律、放直觉写初稿、一字一词炼字、过审美批评关、最终成稿。每一步下面有细化的操作项，每项前面标着权重数字。写诗前扫一眼权重——数字越大的越要重点打磨。写完后复盘，做得好的项权重 +1。这个系统会跟你一起成长。
 
-五绝·七绝·五律·七律完整平仄模板。六种经典词牌格式附名篇示例。平水韵部表与情感映射。诗学九则。八种让诗歌变俗的审美病自查清单。以及每一次犯错、每一次修正留下的疤痕。
+它扎根于两个源头。一个是叶嘉莹先生一生的美学体系——"感发生命"、"四层分析法"（表达形式/表达材质/内容形式/内容材质）、"诗之境阔，词之言长"、从温庭筠到王沂孙的十五位词人一句话本质。另一个是从实战中长出来的九条法则——身体在场、结尾是画面不是道理、敢于丑陋、重话轻轻说——来自真人诗歌实践和毫不留情的批改循环。
 
-**给非中文读者的窗**
+它有完整的格律工具箱——平水韵部表、近体诗/词牌平仄模板、入声字必记表、化用三法、对仗类型——但技法永远服务于心法。审美病自查清单会告诉你：你这首诗是不是辞藻堆砌？意象打不打架？你是不是在用形容词遮掩情感的空洞？
 
-这个 Skill 也是一扇窗。它不只解释中国诗歌「怎么运作」，还解释「为什么这么运作」——在压缩、沉默、和单独一个汉字的重量这个层面上。如果你曾困惑为什么四行唐诗能在十二个世纪后仍然让你心碎，这是一张通往那种技艺的地图。
+如果你曾困惑为什么四行唐诗能穿越十二个世纪依然让人心碎——这个 skill 是一张通往那种技艺的地图，既有学术根基，又有实战温度。
