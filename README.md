@@ -20,7 +20,6 @@
 
 ## 相对 2.0.0 改了什么
 
-本版基于 [ALDIFS/Poetry-meter-skill](https://github.com/ALDIFS/Poetry-meter-skill) 2.0.0 的 `skill.md` 改进，保留其五部结构与「诗学九则」的骨架，补齐缺口、纠正错漏。逐项对照：
 
 | 项 | 2.0.0 | 本版 |
 |---|---|---|
