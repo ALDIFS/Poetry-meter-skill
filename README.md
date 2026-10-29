@@ -1,54 +1,154 @@
-## poetry-meter-skill · 让 AI 写出中文系水准的唐诗宋词的方法
+# poetry-craft
 
-> A Claude Skill that trains AI to write Tang and Song poetry at the level of a Chinese literature graduate — archaic in tone, precise in craft, alive with feeling. Not "AI-generated verse." The real thing.A Claude Skill that writes Chinese classical poetry without embarrassing you. Six steps. Fifty-four self-improving weights. Nine principles from a real poet. One rule: sincerity over ornament, always.
->
-> 一个让 AI 写出中文系水准唐诗宋词的 Claude Skill——格调高古、技法精严、感发生命在线。
->  一个让 AI 写诗不再俗气的 Claude Skill。六步方法论。五十四项自进化权重。九条真人诗学法则。一条铁律：情真胜过辞藻，永远
----
+![tests](../../actions/workflows/ci.yml/badge.svg)
+![license](https://img.shields.io/badge/license-MIT-blue.svg)
+![python](https://img.shields.io/badge/python-3.9%2B-informational)
 
+唐诗宋词的创作与修改技能包：一套九则准绳、一条六步流程、两份可随时查阅的格律与技法参考，以及一个**零依赖、可运行**的格律校验器。
 
-**What this is**
+`SKILL.md` 写给 agent 读，本文件写给人读。
 
-This skill teaches an AI to write classical Chinese poetry that doesn't read like an AI wrote it. The goal is not "passable." The goal is: a reader with a literature degree cannot tell the difference between this and a human poet.
+## 为什么需要它
 
-It achieves this through a method, not just a rulebook. A six-step workflow takes the AI from raw feeling to finished poem. Fifty-four weighted criteria — from "does the emotion sit in a specific organ" to "is the ending an image or a conclusion" — guide attention during composition and incrementally learn from every round of critique. The weights are the memory of practice: what mattered in the last poem matters more in the next.
+大模型写近体诗与词有两个稳定出现的失败模式。
 
-The aesthetic backbone comes from Professor Ye Jiaying's lifelong framework: what makes a line alive (感发生命), why "lotus in elegant diction" (菡萏) hits differently than "lotus in plain speech" (荷花), how the four-layer analysis (expression form / expression substance / content form / content substance) reveals why a thousand-year-old poem still works. Fifteen masters — from Wen Tingyun's coded elegance to Xin Qiji's life-poured-onto-paper — serve as stylistic anchors, not templates to copy but spirits to inhabit.
+其一是格律自评不可信。模型能写出一首看起来很像七律的东西，然后说「已合律」，而实际上第二句失粘、第四句出韵、末句三平尾。这类错误有个共同点：**可判定**。可判定的东西不该交给语言模型目测。
 
-The technique is total: Ping-shui rhyme system, tonal matrices for every classical form, entering-tone characters, allusion methods, parallelism types. But technique never runs the show. The nine principles — body presence, image-not-conclusion endings, dare to be ugly, fold time — are what make the output feel like someone actually hurt or loved before writing it down.
+其二是套路化。辞藻堆砌、意象拥挤、结尾升华、通篇「殇」与「浅唱」。这类无法判定，只能靠准绳与自查表压住。
 
-The result: poetry that is archaic in register, strict in prosody, and — this is the part that matters — not hollow. Something you could submit to a Tang dynasty poetry contest and not be laughed out of the room.
+这个仓库对两件事分别处理：`scripts/check_metre.py` 管前者，`SKILL.md` 的九则与 `references/poetics.md` 的病相表管后者。
 
-**What makes this different from every other poetry skill**
+## 相对 2.0.0 改了什么
 
-Most poetry tools give you rules. This one gives you a method.
+本版基于 [ALDIFS/Poetry-meter-skill](https://github.com/ALDIFS/Poetry-meter-skill) 2.0.0 的 `skill.md` 改进，保留其五部结构与「诗学九则」的骨架，补齐缺口、纠正错漏。逐项对照：
 
-It doesn't just tell you to match tones and rhymes. It walks you through a six-step workflow — from finding the emotional core, through selecting a form and drafting, to word-refinement, aesthetic self-critique, and final polish. Each step contains granular items marked with a weight. Before writing, you scan the weights to know where to focus. After writing, you increment the weights of whatever you did well. The system learns with you.
+| 项 | 2.0.0 | 本版 |
+|---|---|---|
+| 平仄谱 | 十六式收八式：五绝四式、七绝两式、五律一式、七律一式 | 补全十六式，附粘对推导法（记四句可推全部） |
+| 平水韵 | 上平十五部，缺整个下平（阳、庚、尤、先皆无） | 三十平声部全备，附常用字与词林正韵十九部对应 |
+| 词牌 | 四调有谱，水调歌头、满江红仅注字数 | 十一调完整符号谱，长调单列说明「须查《钦定词谱》」 |
+| 格律校验 | 只给输出格式，实由模型自判 | 可运行脚本：二四六字、韵部归属、孤平、三平尾、句数字数 |
+| 拗救 | 未收 | 孤平拗救、三拗四救、一拗三救、特拗四种 |
+| 对仗 | 一行带过（正对／反对／流水对） | 三层要求、三类对法、合掌与同字相对之忌 |
+| 词韵 | 一句提及「词韵十九部」 | 平水韵到词林正韵的完整映射，脚本内置按词林归并判韵 |
+| 结构 | 单文件约 15 KB，全部常驻上下文 | `SKILL.md` 承载流程与准绳，谱、韵、技法移入 `references/`，按需加载 |
+| 权重机制 | 发布说明描述「五十四项 [n] 权重」，文件内无可用清单 | 给出二十四项可勾选自评表，按六步分组，附复盘规则 |
+| 语料 | 三组写景写情写志 | 按情感细分为八组对照，附句长与停顿的用法提示 |
 
-The approach is grounded in two sources. One is the late Professor Ye Jiaying's (Florence Chia-ying Yeh) lifelong aesthetic framework — her concepts of "affective life" (感发生命), the "four-layer analysis" of poetic language, the distinction between poetry's broad realm and ci's lingering resonance (诗之境阔，词之言长), and her reading of fifteen masters from Wen Tingyun to Wang Yisun. The other is nine principles extracted from a real poet's practice and brutal critique — principles like "emotion lives in the body," "end with an image, never a conclusion," "dare to be ugly," and "say the heaviest thing lightly."
+未改动的部分：九则的立意、病相的病名与药方、五绝「减法中的减法」的判断，这些 2.0.0 是对的，照留。文字全部重写，未沿用原文件行文。
 
----
+## 校验器
 
-**这个 skill 是干什么的**
+不需要安装，Python 3.9 以上直接跑。
 
-让 AI 写出不像 AI 写的古典诗词。目标不是"还行"。目标是：一个中文系出身的人读完之后，分不出这是人写的还是 AI 写的。
+```bash
+# 判体 + 校验
+python scripts/check_metre.py 诗稿.txt --form auto
 
-做到这一点，靠的不是一本规则书，是一套方法。六步工作流带 AI 从真情实感到成稿：主题确认真不真→格律选对没有→初稿放直觉冲→一字一词炼材质→过审美批评关→最终成稿。每步下面有五十四项带权重的操作指标——从"情绪落在哪个具体器官上"到"结尾是画面还是总结"——写作前扫权重定方向，写完后复盘好的加权重。权重是实战的记忆：上次打磨过的，下次自动重点打磨。
+# 指定体裁
+python scripts/check_metre.py 诗稿.txt --form qijue
+python scripts/check_metre.py 诗稿.txt --form ci:浣溪沙
 
-审美根基来自叶嘉莹先生的体系：什么叫"感发生命"（不是写花写月就是诗，是写的东西里有没有一份摇荡性情的感动），为什么"菡萏"和"荷花"不是一个东西（四层分析法：表达形式/表达材质/内容形式/内容材质），"诗之境阔，词之言长"到底在说什么。十五位词人——从温庭筠的语码之美到辛弃疾的以生命写诗——是风格的锚，不是拿来抄的模板，是拿来进入的精神状态。
+# 从标准输入
+echo "白日依山尽，黄河入海流。欲穷千里目，更上一层楼。" | python scripts/check_metre.py - --form wujue
 
-技法全覆盖：平水韵一百零六部、近体诗和词牌的完整平仄模板、入声字必记表、化用三法、对仗全部类型。但技法永远服务于心法。九条法则——身体在场、结尾是画面不是道理、敢于丑陋、时间的折叠——才是让诗读起来像"人写的"而不是"AI填的"的那个东西。
+# 字表未收之字，可手工给定平仄，让脚本只做谱面比对
+python scripts/check_metre.py 诗稿.txt --form qijue --pin "仄仄平平仄仄平,平平仄仄仄平平,平平仄仄平平仄,仄仄平平仄仄平"
 
-产出：格调高古，格律精严，关键是——不空。可以投稿唐代诗歌比赛而不被赶出去的那种。
+# 查看支持范围
+python scripts/check_metre.py --list
+```
 
-**跟其他诗词 skill 最大的区别**
+输出示例：
 
-大多数诗词工具给你规则。这个给你方法。
+```
+ 体裁：五绝 · 仄起首句不入韵
 
-不是只告诉你怎么对平仄、怎么押韵。它有一套完整的六步工作流——从确认感发生命开始，到选体格律、放直觉写初稿、一字一词炼字、过审美批评关、最终成稿。每一步下面有细化的操作项，每项前面标着权重数字。写诗前扫一眼权重——数字越大的越要重点打磨。写完后复盘，做得好的项权重 +1。这个系统会跟你一起成长。
+  白日依山尽  仄仄平平仄
+  黄河入海流  平平仄仄平
+  欲穷千里目  仄平平仄仄
+  更上一层楼  ?仄仄平平
 
-它扎根于两个源头。一个是叶嘉莹先生一生的美学体系——"感发生命"、"四层分析法"（表达形式/表达材质/内容形式/内容材质）、"诗之境阔，词之言长"、从温庭筠到王沂孙的十五位词人一句话本质。另一个是从实战中长出来的九条法则——身体在场、结尾是画面不是道理、敢于丑陋、重话轻轻说——来自真人诗歌实践和毫不留情的批改循环。
+平仄：合律
+韵脚：流(平/十一尤)、楼(平/十一尤)
+韵部：十一尤
+两读字：更（平仄随义而变，脚本未判，须按语境定音）
+硬伤：无
+```
 
-它有完整的格律工具箱——平水韵部表、近体诗/词牌平仄模板、入声字必记表、化用三法、对仗类型——但技法永远服务于心法。审美病自查清单会告诉你：你这首诗是不是辞藻堆砌？意象打不打架？你是不是在用形容词遮掩情感的空洞？
+检查项：句数与句长、二四六字平仄、韵脚归属（近体按平水韵，词按词林正韵归并）、孤平、三平尾、三仄尾、失律字位、重字提示。换韵词牌按韵段分段核韵。
 
-如果你曾困惑为什么四行唐诗能穿越十二个世纪依然让人心碎——这个 skill 是一张通往那种技艺的地图，既有学术根基，又有实战温度。
+`--json` 输出结构化结果；退出码 `0` 表示校验完成，`2` 表示输入或体裁无法解析。合不合律看 `issues` 是否为空，不要只看退出码。
+
+## 准确性边界
+
+这一节比上面所有内容都重要。知道工具在哪儿会失手，比相信它万能有用。
+
+**字表是常用字子集，不是全本韵书。** 平声约 1500 字（按平水韵三十部归部），仄声约 1400 字，平仄两读字单列 60 个。凡两表皆未收之字，脚本标 `?` 并列入「字表未收」，**不默认作仄声**。这是有意的设计：宁可少判，不给假结论。
+
+**两读字一律不判。** 为、看、望、忘、教、令、横、更、应、兴、相、间、将、燕、传、弹、数、省、醒、任、空、当、量、调等六十字，平仄随义而变，脚本只标注，须人工定音。判错了比判不出更糟。
+
+**词只收十一个常用词牌的正体。** 水调歌头、念奴娇、满江红、声声慢等长调未收——这些调句式变体极多，谱面一错，全篇误判，不如不收。
+
+**仄韵词的韵部不核。** 字表只归平声韵部，仄韵（如梦令、生查子、蝶恋花）只核平仄、字数与韵位，韵脚是否同部须查《词林正韵》，输出里会注明。
+
+**不判的东西**：对仗是否工稳、有无合掌、意象逻辑是否自洽、意境高低。这些属于判断力范畴，脚本一概不碰，交给 `references/poetics.md` 的病相表。
+
+**拗救只提示不裁定。** 二四六字以外的偏差记为「不拘处」，是否属于合律的拗救，须逐处人工确认。
+
+## 作为 skill 安装
+
+仓库根目录就是 skill 目录，直接克隆到技能路径即可。
+
+```bash
+# WorkBuddy / Claude 类 agent 的用户级技能目录
+git clone https://github.com/ALDIFS/poetry-craft.git ~/.workbuddy/skills/poetry-craft
+```
+
+Windows：
+
+```powershell
+git clone https://github.com/ALDIFS/poetry-craft.git "$env:USERPROFILE\.workbuddy\skills\poetry-craft"
+```
+
+装好之后，说「写一首七律」「填一首浣溪沙」「帮我改这首诗，看看平仄对不对」，agent 会加载 `SKILL.md`，按六步流程工作，并在成稿后调用校验器。
+
+## 仓库结构
+
+```
+poetry-craft/
+├── SKILL.md                      入口：诗学九则、六步流程、格律要点、校验、输出格式、红线
+├── references/
+│   ├── classical-prosody.md      十六式平仄谱、粘对推导、拗救、禁忌、对仗、平水韵与词林正韵、十一个词牌谱
+│   └── poetics.md                改稿教训、炼字三法、意象与空间逻辑、意境三层、化用、病相表、语料、权重自评表
+├── scripts/
+│   ├── check_metre.py            格律校验器，零依赖
+│   └── data/
+│       ├── pingshui_ping.json    平水韵三十平声部常用字
+│       ├── ze.txt                仄声常用字
+│       ├── duyin.txt             平仄两读字
+│       ├── ping_extra.txt        只定平声、未归部之字
+│       └── cipai.json            词牌谱（符号谱，谱长即字数）
+└── tests/
+    └── test_check_metre.py       十五项回归测试
+```
+
+## 开发
+
+```bash
+python -m unittest discover -s tests -v
+```
+
+CI 在 Ubuntu、Windows、macOS 三平台跑 Python 3.9 与 3.12，另做一次字节码编译检查。改动字表或词牌谱时务必先跑测试——回归测试是唯一防线。
+
+扩充韵表、增补词牌、报告误判，见 [CONTRIBUTING.md](CONTRIBUTING.md)。
+
+## 数据来源与勘误
+
+平水韵一百零六部、词林正韵十九部的韵部划分据通行韵书整理；词牌谱以《钦定词谱》正体为准，一字一句对谱填写。字表为常用字子集，由人工整理，**必有疏漏**。发现某字平仄判错、某字归错韵部、某个词牌谱面有误，请提 issue 并附依据（韵书页码或词作例证），这类报告最有价值。
+
+## 许可与渊源
+
+MIT，见 [LICENSE](LICENSE)。
+
+本版承接自 `ALDIFS/Poetry-meter-skill` 2.0.0，沿用其五部结构与诗学九则的骨架，补全谱、韵、词牌与校验实现，文本重写。韵部表、词牌谱、校验脚本为该版本所无。
