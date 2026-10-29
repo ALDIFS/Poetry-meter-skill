@@ -1,4 +1,4 @@
-# poetry-craft
+# Poetry-meter-skill
 
 ![tests](../../actions/workflows/ci.yml/badge.svg)
 ![license](https://img.shields.io/badge/license-MIT-blue.svg)
